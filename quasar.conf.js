@@ -8,7 +8,7 @@
 
 /* eslint-env node */
 const ESLintPlugin = require('eslint-webpack-plugin')
-const { configure } = require('quasar/wrappers');
+const {configure} = require('quasar/wrappers')
 
 module.exports = configure(function (ctx) {
   return {
@@ -73,9 +73,9 @@ module.exports = configure(function (ctx) {
 
       // https://v2.quasar.dev/quasar-cli/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpack (chain) {
+      chainWebpack(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }])
+          .use(ESLintPlugin, [{extensions: ['js', 'vue']}])
       },
     },
 
@@ -88,10 +88,11 @@ module.exports = configure(function (ctx) {
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
-      config: {},
+      iconSet: 'material-icons', // Quasar icon set
 
-      // iconSet: 'material-icons', // Quasar icon set
+      // https://quasar.dev/options/quasar-language-packs#using-quasar-language-pack-in-app-space
       // lang: 'en-US', // Quasar language pack
+      lang: 'zh-CN', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
@@ -101,7 +102,24 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'LocalStorage',
+        // 'SessionStorage',
+        'Notify',
+        'Dialog'
+      ],
+
+      config: {
+        notify: {
+          html: false,
+          position: 'top-right',
+          timeout: 2500,
+          // closeBtn: true
+          closeBtn: '×'
+        }
+      },
+      // Adds the flex responsive++ CSS classes (noticeable bump in footprint)
+      cssAddon: true,
     },
 
     // animations: 'all', // --- includes all animations
@@ -119,11 +137,11 @@ module.exports = configure(function (ctx) {
                       // (gets superseded if process.env.PORT is specified at runtime)
 
       maxAge: 1000 * 60 * 60 * 24 * 30,
-        // Tell browser when a file from the server should expire from cache (in ms)
+      // Tell browser when a file from the server should expire from cache (in ms)
 
-      chainWebpackWebserver (chain) {
+      chainWebpackWebserver(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
+          .use(ESLintPlugin, [{extensions: ['js']}])
       },
 
       middlewares: [
@@ -139,9 +157,9 @@ module.exports = configure(function (ctx) {
 
       // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
       // if using workbox in InjectManifest mode
-      chainWebpackCustomSW (chain) {
+      chainWebpackCustomSW(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
+          .use(ESLintPlugin, [{extensions: ['js']}])
       },
 
       manifest: {
@@ -216,16 +234,16 @@ module.exports = configure(function (ctx) {
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackMain (chain) {
+      chainWebpackMain(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
+          .use(ESLintPlugin, [{extensions: ['js']}])
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackPreload (chain) {
+      chainWebpackPreload(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
+          .use(ESLintPlugin, [{extensions: ['js']}])
       },
     }
   }
-});
+})
