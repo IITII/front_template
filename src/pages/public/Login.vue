@@ -13,7 +13,7 @@
             <q-list>
               <q-item>
                 <q-item-section>
-                  <q-input v-model.trim="input.name" :label="$t('username')" :lazy-rules="true"
+                  <q-input v-model="input.name" :label="$t('username')" :lazy-rules="true"
                            :rules="validate.name" autofocus
                            clearable counter maxlength="10" required
                            type="text" model-value=""/>
@@ -75,6 +75,14 @@ export default {
       isPwd: true,
       validate: {
         name: [
+          val => {
+            if (!val) return true
+            if (val.startsWith(' ') || val.endsWith(' ')) {
+              return this.$t('username_should_not_start_or_end_with_space')
+            } else {
+              return true
+            }
+          },
           val => (val && 3 <= val.length && val.length <= 10) || this.$t('username_length_between_3_and_10')
         ],
         password: [
@@ -88,7 +96,7 @@ export default {
   methods: {
     onSubmit() {
       const data = {
-        name: this.input.name,
+        name: this.input.name.trim(),
         password: this.input.password,
       }
       return this.$axios.post('/limit/user/login', data)

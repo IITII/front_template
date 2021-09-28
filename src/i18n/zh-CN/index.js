@@ -44,6 +44,7 @@ export default {
   image: '图片',
   video: '视频',
   username_length_between_3_and_10: '用户名长度介于 3 到 10 个字符之间',
+  username_should_not_start_or_end_with_space: '用户名不应该以空格开头或结尾',
   password_length_between_1_and_10: '密码长度介于 1 到 10 个字符之间',
   about: '关于',
   api_setting: 'API 设置',

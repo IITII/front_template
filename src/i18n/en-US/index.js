@@ -42,6 +42,7 @@ export default {
   username: 'Username',
   password: 'Password',
   username_length_between_3_and_10: 'Username length between 3 and 10',
+  username_should_not_start_or_end_with_space: 'username shouldn\'t start or end with space',
   password_length_between_1_and_10: 'Password length between 1 and 10',
   about: 'About',
   api_setting: 'API Setting',
