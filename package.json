@@ -27,7 +27,6 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^7.0.0",
     "eslint-webpack-plugin": "^2.4.0",
-    "vuejs-logger": "^1.5.5",
     "vuejs3-logger": "^1.0.0"
   },
   "browserslist": [
