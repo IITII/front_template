@@ -6,13 +6,14 @@
       style="width: 200px; height: 200px"
     >
     <q-tree
+      no-transition
       ref="qtree"
       :dark="tree.dark"
       :filter="tree.filter"
       :nodes="tree.nodes"
       node-key="nodeKey"
       @update:selected="update_selected">
-      <template v-slot:header-root="prop">
+      <template v-slot:default-header="prop">
         <div class="row items-center">
           {{ prop.node.label }}
           <q-badge
@@ -37,12 +38,16 @@
 
 <script>
 import {defineComponent} from 'vue';
-import * as tree from 'src/utils/tree.js';
+import tree from 'src/utils/tree.js';
 
 export default defineComponent({
   name: 'PageIndex',
   data() {
     return {
+      badge: {
+        color: 'primary',
+        text_color: 'white',
+      },
       tree: {
         dark: false,
         filter: '',
@@ -61,6 +66,7 @@ export default defineComponent({
     // console.dir(this.$log.info)
     this.$log.info('info')
     this.$log.debug(this.$axios.defaults)
+    // this.$log.debug(tree)
   }
 })
 </script>
